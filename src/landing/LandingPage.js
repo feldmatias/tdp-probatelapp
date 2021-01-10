@@ -3,7 +3,7 @@ import {Image, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 
 import Button from 'react-native-bootstrap-buttons';
 
-const LandingPage: () => React$Node = () => {
+const LandingPage = ({navigation}) => {
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -19,6 +19,7 @@ const LandingPage: () => React$Node = () => {
               label={text.button}
               buttonType="primary"
               rounded
+              onPress={() => navigation.navigate('Catalog')}
             />
           </View>
         </ScrollView>
