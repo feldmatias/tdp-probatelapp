@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import LandingPage from './landing/LandingPage';
 import Catalog from './catalog/Catalog';
+import Probador from './probador/Probador';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,11 @@ const App: () => React$Node = () => {
           name="Catalog"
           component={Catalog}
           // options={Object.assign({}, headerOptions, { title: "Catálogo" })}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Probador"
+          component={Probador}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
