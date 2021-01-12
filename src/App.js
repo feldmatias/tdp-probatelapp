@@ -2,8 +2,9 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import LandingPage from './landing/LandingPage';
-import Catalog from './catalog/Catalog';
 import Probador from './probador/Probador';
+import Catalog from './catalog/Catalog';
+import Store from './store/Store';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,11 @@ const App: () => React$Node = () => {
         <Stack.Screen
           name="Probador"
           component={Probador}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Store"
+          component={Store}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

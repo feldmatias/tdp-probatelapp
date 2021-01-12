@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Colors from 'react-native/Libraries/NewAppScreen/components/Colors';
 
-const CatalogItem = (props) => {
+const StoreItem = (props) => {
   return (
     <TouchableHighlight onPress={props.onPress} underlayColor="transparent">
       <View style={styles.itemContainer}>
@@ -21,7 +21,7 @@ const CatalogItem = (props) => {
   );
 };
 
-const Catalog = ({navigation}) => {
+const Store = ({navigation}) => {
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -29,7 +29,7 @@ const Catalog = ({navigation}) => {
         <FlatList
           data={catalogItems}
           renderItem={({item}) => (
-            <CatalogItem
+            <StoreItem
               onPress={() => navigation.navigate('Probador')}
               item={item}
             />
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Catalog;
+export default Store;

@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import Video from 'react-native-video';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Button from 'react-native-bootstrap-buttons';
 
 const Probador = ({navigation}) => {
   const [video, setVideo] = useState(null);
@@ -41,6 +42,21 @@ const Probador = ({navigation}) => {
           onProgress={({currentTime}) => checkTime(currentTime)}
         />
       </GestureRecognizer>
+
+      <Button
+        labelStyle={styles.buttonLabel}
+        containerStyle={{...styles.button, ...styles.buttonClose}}
+        label={'X'}
+        buttonType="danger"
+        onPress={() => {}}
+      />
+      <Button
+        labelStyle={styles.buttonLabel}
+        containerStyle={{...styles.button, ...styles.buttonSuccess}}
+        label={'✔'}
+        buttonType="success"
+        onPress={() => {navigation.navigate('Store')}}
+      />
     </>
   );
 };
@@ -49,6 +65,26 @@ const styles = StyleSheet.create({
   video: {
     width: '100%',
     height: '100%',
+  },
+  button: {
+    margin: 20,
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonClose: {
+    bottom: 0,
+    left: 0,
+  },
+  buttonSuccess: {
+    bottom: 0,
+    right: 0,
+  },
+  buttonLabel: {
+    fontSize: 35,
+    fontWeight: 'bold',
   },
 });
 
