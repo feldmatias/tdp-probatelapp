@@ -1,11 +1,20 @@
-import {StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import Video from 'react-native-video';
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 const Probador = ({navigation}) => {
   const [video, setVideo] = useState(null);
   const [running, setRunning] = useState(false);
+  const [stepNumber, setStepNumber] = useState(0);
+  const steps = [13.7, 17.2, 30.6, 35]; // in seconds
+
+  const checkTime = (currentTime) => {
+    if (currentTime >= steps[stepNumber]) {
+      setStepNumber(stepNumber + 1);
+      setRunning(false);
+    }
+  };
 
   return (
     <>
@@ -20,7 +29,7 @@ const Probador = ({navigation}) => {
           directionalOffsetThreshold: 80,
         }}>
         <Video
-          source={require('./Probador_virtual.mp4')}
+          source={require('./probador_virtual.mp4')}
           ref={(ref) => {
             setVideo(ref);
           }}
@@ -29,6 +38,7 @@ const Probador = ({navigation}) => {
           muted={true}
           paused={!running}
           onLoad={() => video.seek(0.01)}
+          onProgress={({currentTime}) => checkTime(currentTime)}
         />
       </GestureRecognizer>
     </>
