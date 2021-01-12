@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-const Buy = ({navigation}) => {
+const SuccessBuy = ({navigation}) => {
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -17,7 +17,10 @@ const Buy = ({navigation}) => {
             <Image style={styles.logo} source={require('./thanks.png')} />
           </View>
           <View style={styles.shipmentContainer}>
-            <Image style={styles.shipmentIcon} source={require('./shipment.png')} />
+            <Image
+              style={styles.shipmentIcon}
+              source={require('./shipment.png')}
+            />
             <Text style={styles.shipment}>{text.shipment}</Text>
           </View>
         </ScrollView>
@@ -62,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Buy;
+export default SuccessBuy;
