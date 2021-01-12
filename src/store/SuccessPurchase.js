@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-const SuccessBuy = ({navigation}) => {
+const SuccessPurchase = ({navigation}) => {
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SuccessBuy;
+export default SuccessPurchase;

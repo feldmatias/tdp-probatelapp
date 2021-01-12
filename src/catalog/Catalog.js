@@ -15,7 +15,10 @@ const CatalogItem = (props) => {
     <TouchableHighlight onPress={props.onPress} underlayColor="transparent">
       <View style={styles.itemContainer}>
         <Image style={styles.itemImage} source={props.item.image} />
-        <Text style={styles.itemTitle}>{props.item.key}</Text>
+        <View style={styles.itemData}>
+          <Text style={styles.itemTitle}>{props.item.key}</Text>
+          <Text style={styles.itemPrice}>${props.item.price}</Text>
+        </View>
       </View>
     </TouchableHighlight>
   );
@@ -44,45 +47,17 @@ const Catalog = ({navigation}) => {
 };
 
 const catalogItems = [
-  {
-    key: 'Remera roja',
-    image: {
-      uri:
-        'https://statics.glamit.com.ar/media/catalog/product/cache/8/image/9df78eab33525d08d6e5fb8d27136e95/g/c/gcr601bl.jpg',
-    },
-  },
-  {key: 'Pantalón Verde', image: require('../logo/logo.png')},
-  {
-    key: 'Buzo Puma',
-    image: {
-      uri:
-        'https://www.puraimagendigital.com/2178/remera-adulto-unisex-gris-melange.jpg',
-    },
-  },
-  {
-    key: 'Bermuda de Jean',
-    image: {
-      uri:
-        'https://www.doiteargentina.com.ar/wp-content/uploads/2019/05/doite-remera-termica-thermoactive-turquesa-mujer-01.jpg',
-    },
-  },
-  {
-    key: 'Jean',
-    image: {
-      uri:
-        'https://d3295hraz5fimx.cloudfront.net/16864-product_lg/remera-de-ninos-summer.jpg',
-    },
-  },
-  {key: 'Joel', image: require('../logo/logo.png')},
-  {key: 'John', image: require('../logo/logo.png')},
-  {
-    key: 'Jilliandddddddddddd',
-    image: {
-      uri:
-        'https://statics.glamit.com.ar/media/catalog/product/cache/8/image/9df78eab33525d08d6e5fb8d27136e95/g/c/gcr601bl.jpg',
-    },
-  },
+  {key: 'Remera roja', image: require('./clothes.png'), price: '123.00'},
+  {key: 'Pantalón Verde', image: require('../logo/logo.png'), price: '500.00'},
+  {key: 'Buzo Puma', image: require('../logo/logo.png'), price: '208.50'},
+  {key: 'Bermuda de Jean', image: require('../logo/logo.png'), price: '999.99'},
+  {key: 'Jean', image: require('../logo/logo.png'), price: '100.00'},
+  {key: 'Joel', image: require('../logo/logo.png'), price: '568.00'},
+  {key: 'John', image: require('../logo/logo.png'), price: '724.00'},
+  {key: 'Jilldddd', image: require('../logo/logo.png'), price: '123.00'},
 ];
+
+export const selectedCatalogItem = catalogItems[0];
 
 const text = {
   title: 'Elegí la prenda para probarte:',
@@ -123,11 +98,18 @@ const styles = StyleSheet.create({
     height: undefined,
     aspectRatio: 1,
   },
-  itemTitle: {
+  itemData: {
     width: '40%',
     marginLeft: 20,
-    fontSize: 30,
+  },
+  itemTitle: {
+    fontSize: 27,
     textAlign: 'center',
+  },
+  itemPrice: {
+    fontSize: 21,
+    textAlign: 'center',
+    marginTop: 15,
   },
 });
 

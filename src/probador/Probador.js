@@ -8,6 +8,7 @@ const Probador = ({navigation}) => {
   const [video, setVideo] = useState(null);
   const [running, setRunning] = useState(false);
   const [stepNumber, setStepNumber] = useState(0);
+  const startTime = 1.8;
   const steps = [13.7, 17.2, 30.6, 35]; // in seconds
 
   const checkTime = (currentTime) => {
@@ -38,7 +39,7 @@ const Probador = ({navigation}) => {
           resizeMode={'stretch'}
           muted={true}
           paused={!running}
-          onLoad={() => video.seek(0.01)}
+          onLoad={() => video.seek(startTime)}
           onProgress={({currentTime}) => checkTime(currentTime)}
         />
       </GestureRecognizer>
@@ -56,7 +57,7 @@ const Probador = ({navigation}) => {
         label={'✔'}
         buttonType="success"
         onPress={() => {
-          navigation.navigate('Buy');
+          navigation.navigate('Purchase');
         }}
       />
     </>

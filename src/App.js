@@ -4,7 +4,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import LandingPage from './landing/LandingPage';
 import Probador from './probador/Probador';
 import Catalog from './catalog/Catalog';
-import Buy from './store/Buy';
+import SuccessPurchase from './store/SuccessPurchase';
+import Purchase from './store/Purchase';
 
 const Stack = createStackNavigator();
 
@@ -36,8 +37,13 @@ const App: () => React$Node = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Buy"
-          component={Buy}
+          name="Purchase"
+          component={Purchase}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SuccessPurchase"
+          component={SuccessPurchase}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
