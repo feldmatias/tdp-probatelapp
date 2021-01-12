@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import LandingPage from './landing/LandingPage';
 import Probador from './probador/Probador';
 import Catalog from './catalog/Catalog';
-import Store from './store/Store';
+import Buy from './store/Buy';
 
 const Stack = createStackNavigator();
 
@@ -36,8 +36,8 @@ const App: () => React$Node = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Store"
-          component={Store}
+          name="Buy"
+          component={Buy}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

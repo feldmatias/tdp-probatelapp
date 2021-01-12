@@ -25,7 +25,10 @@ const Catalog = ({navigation}) => {
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>{text.title}</Text>
+        <View style={styles.titleContainer}>
+          <Image style={styles.clothesIcon} source={require('./clothes.png')} />
+          <Text style={styles.title}>{text.title}</Text>
+        </View>
         <FlatList
           data={catalogItems}
           renderItem={({item}) => (
@@ -90,10 +93,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#e9fafb',
     height: '100%',
   },
+  titleContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 20,
+    flexDirection: 'row',
+  },
+  clothesIcon: {
+    width: 60,
+    height: 60,
+  },
   title: {
     fontSize: 22,
-    margin: 20,
-    textAlign: 'center',
+    marginLeft: 10,
   },
   itemContainer: {
     margin: 10,
