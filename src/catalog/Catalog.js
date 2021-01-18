@@ -47,14 +47,12 @@ const Catalog = ({navigation}) => {
 };
 
 const catalogItems = [
-  {key: 'Remera roja', image: require('./clothes.png'), price: '123.00'},
-  {key: 'Pantalón Verde', image: require('../logo/logo.png'), price: '500.00'},
-  {key: 'Buzo Puma', image: require('../logo/logo.png'), price: '208.50'},
-  {key: 'Bermuda de Jean', image: require('../logo/logo.png'), price: '999.99'},
-  {key: 'Jean', image: require('../logo/logo.png'), price: '100.00'},
-  {key: 'Joel', image: require('../logo/logo.png'), price: '568.00'},
-  {key: 'John', image: require('../logo/logo.png'), price: '724.00'},
-  {key: 'Jilldddd', image: require('../logo/logo.png'), price: '123.00'},
+  {key: 'Remera roja', image: require('./items/remera_roja.png'), price: '123.00'},
+  {key: 'Pantalón de jean', image: require('./items/jean.jpg'), price: '500.00'},
+  {key: 'Buzo azul', image: require('./items/buzo_azul.jpg'), price: '208.50'},
+  {key: 'Remera negra', image: require('./items/remera_negra.jpg'), price: '568.00'},
+  {key: 'Bermuda de jean', image: require('./items/bermuda_jean.jpg'), price: '999.99'},
+  {key: 'Zapatillas', image: require('./items/zapatillas.jpg'), price: '800.00'},
 ];
 
 export const selectedCatalogItem = catalogItems[0];
