@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
   buttonLabel: {
     fontSize: 35,
     fontWeight: 'bold',
+    color: 'white',
   },
 });
 
