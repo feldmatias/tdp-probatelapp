@@ -54,7 +54,7 @@ const Probador = ({navigation}) => {
       <Button
         labelStyle={styles.buttonLabel}
         containerStyle={{...styles.button, ...styles.buttonSuccess}}
-        label={'✔'}
+        label={'√'}
         buttonType="success"
         onPress={() => {
           navigation.navigate('Purchase');
