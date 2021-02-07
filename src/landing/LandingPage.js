@@ -16,10 +16,18 @@ const LandingPage = ({navigation}) => {
             <Button
               labelStyle={styles.buttonLabel}
               containerStyle={styles.button}
-              label={text.button}
+              label={text.probador}
               buttonType="primary"
               rounded
               onPress={() => navigation.navigate('Catalog')}
+            />
+
+            <Button
+              labelStyle={styles.buttonLabel}
+              containerStyle={styles.button}
+              label={text.recomendador}
+              buttonType="primary"
+              rounded
             />
           </View>
         </ScrollView>
@@ -29,7 +37,8 @@ const LandingPage = ({navigation}) => {
 };
 
 const text = {
-  button: 'Probador virtual',
+  probador: 'Probador virtual',
+  recomendador: 'Recomendador',
 };
 
 const styles = StyleSheet.create({
@@ -51,12 +60,13 @@ const styles = StyleSheet.create({
   body: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 70,
+    marginTop: 30,
   },
   button: {
     width: '70%',
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 15,
   },
   buttonLabel: {
     fontSize: 25,

@@ -10,6 +10,7 @@ import {
 
 import Button from 'react-native-bootstrap-buttons';
 import {selectedCatalogItem} from '../catalog/Catalog';
+import RadioButton from '../utils/RadioButton';
 
 const Purchase = ({navigation}) => {
   return (
@@ -21,6 +22,11 @@ const Purchase = ({navigation}) => {
             <Image style={styles.logo} source={selectedCatalogItem.image} />
             <Text style={styles.itemName}>{selectedCatalogItem.key}</Text>
             <Text style={styles.itemPrice}>${selectedCatalogItem.price}</Text>
+          </View>
+
+          <View style={styles.radioGroup}>
+            <RadioButton style={styles.radio} text={text.payDebit} selected />
+            <RadioButton style={styles.radio} text={text.payOther} />
           </View>
 
           <View style={styles.body}>
@@ -51,6 +57,8 @@ const text = {
   buttonConfirm: 'Comprar',
   buttonCancel: 'Cancelar',
   confirm: 'Confirmar compra',
+  payDebit: 'Tarjeta terminada en 1234',
+  payOther: 'Nuevo método de pago',
 };
 
 const styles = StyleSheet.create({
@@ -72,7 +80,7 @@ const styles = StyleSheet.create({
   body: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 70,
+    marginTop: 30,
     flexDirection: 'row',
   },
   button: {
@@ -95,6 +103,13 @@ const styles = StyleSheet.create({
   },
   itemPrice: {
     fontSize: 25,
+  },
+  radioGroup: {
+    marginTop: 22,
+    marginLeft: 35,
+  },
+  radio: {
+    marginTop: 15,
   },
 });
 
