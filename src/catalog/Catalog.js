@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   FlatList,
   Image,
@@ -9,6 +9,8 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import Colors from 'react-native/Libraries/NewAppScreen/components/Colors';
+import {catalogItems} from './items/catalog_items';
+import CatalogFilters from './CatalogFilters';
 
 const CatalogItem = (props) => {
   return (
@@ -25,6 +27,9 @@ const CatalogItem = (props) => {
 };
 
 const Catalog = ({navigation}) => {
+  const items = catalogItems;
+  const [filteredItems, setFilteredItems] = useState(items);
+
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -32,8 +37,11 @@ const Catalog = ({navigation}) => {
           <Image style={styles.clothesIcon} source={require('./clothes.png')} />
           <Text style={styles.title}>{text.title}</Text>
         </View>
+        <View style={styles.filters}>
+          <CatalogFilters results={filteredItems.length} />
+        </View>
         <FlatList
-          data={catalogItems}
+          data={filteredItems}
           renderItem={({item}) => (
             <CatalogItem
               onPress={() => navigation.navigate('Probador')}
@@ -45,17 +53,6 @@ const Catalog = ({navigation}) => {
     </>
   );
 };
-
-const catalogItems = [
-  {key: 'Remera roja', image: require('./items/remera_roja.png'), price: '123.00'},
-  {key: 'Pantalón de jean', image: require('./items/jean.jpg'), price: '500.00'},
-  {key: 'Buzo azul', image: require('./items/buzo_azul.jpg'), price: '208.50'},
-  {key: 'Remera negra', image: require('./items/remera_negra.jpg'), price: '568.00'},
-  {key: 'Bermuda de jean', image: require('./items/bermuda_jean.jpg'), price: '999.99'},
-  {key: 'Zapatillas', image: require('./items/zapatillas.jpg'), price: '800.00'},
-];
-
-export const selectedCatalogItem = catalogItems[0];
 
 const text = {
   title: 'Elegí la prenda para probarte:',
@@ -108,6 +105,10 @@ const styles = StyleSheet.create({
     fontSize: 21,
     textAlign: 'center',
     marginTop: 15,
+  },
+  filters: {
+    margin: 10,
+    marginTop: 0,
   },
 });
 

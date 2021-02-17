@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 
 import Button from 'react-native-bootstrap-buttons';
-import {selectedCatalogItem} from '../catalog/Catalog';
 import RadioButton from '../utils/RadioButton';
+import {selectedCatalogItem} from '../catalog/items/catalog_items';
 
 const Purchase = ({navigation}) => {
   return (
