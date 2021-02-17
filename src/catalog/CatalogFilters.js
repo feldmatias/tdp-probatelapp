@@ -1,15 +1,42 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const CatalogFilters = (props) => {
+const CatalogFiltersModal = (props) => {
   return (
     <>
+      <Modal
+        transparent={true}
+        visible={props.visible}
+        onRequestClose={props.onFilter}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+            <TouchableOpacity
+              style={[styles.button, styles.buttonClose]}
+              onPress={props.onFilter}>
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </>
+  );
+};
+
+const CatalogFilters = (props) => {
+  const [showFilters, setShowFilters] = useState(false);
+  return (
+    <>
+      <CatalogFiltersModal
+        visible={showFilters}
+        onFilter={() => setShowFilters(false)}
+      />
       <View style={styles.container}>
         <Text style={styles.results}>
           {props.results || 0} {text.results}
         </Text>
         <Text style={styles.results}>|</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setShowFilters(true)}>
           <Text style={[styles.results, styles.link]}>
             {text.filter} <Text style={styles.filterArrow}>ᐯ</Text>
           </Text>
@@ -42,6 +69,48 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: 14,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+    marginTop: 110,
+    marginRight: 15,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
   },
 });
 

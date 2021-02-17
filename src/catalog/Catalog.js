@@ -11,6 +11,7 @@ import {
 import Colors from 'react-native/Libraries/NewAppScreen/components/Colors';
 import {catalogItems} from './items/catalog_items';
 import CatalogFilters from './CatalogFilters';
+import Separator from '../utils/Separator';
 
 const CatalogItem = (props) => {
   return (
@@ -40,6 +41,7 @@ const Catalog = ({navigation}) => {
         <View style={styles.filters}>
           <CatalogFilters results={filteredItems.length} />
         </View>
+        <Separator />
         <FlatList
           data={filteredItems}
           renderItem={({item}) => (
