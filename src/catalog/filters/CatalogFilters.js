@@ -1,27 +1,7 @@
 import React, {useState} from 'react';
 import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-
-const CatalogFiltersModal = (props) => {
-  return (
-    <>
-      <Modal
-        transparent={true}
-        visible={props.visible}
-        onRequestClose={props.onFilter}>
-        <View style={styles.modalContainer}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
-              onPress={props.onFilter}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-    </>
-  );
-};
+import Separator from '../../utils/Separator';
+import CategoriesFilter from './CategoriesFilter';
 
 const CatalogFilters = (props) => {
   const [showFilters, setShowFilters] = useState(false);
@@ -30,6 +10,7 @@ const CatalogFilters = (props) => {
       <CatalogFiltersModal
         visible={showFilters}
         onFilter={() => setShowFilters(false)}
+        onCategorySelected={props.onCategorySelected}
       />
       <View style={styles.container}>
         <Text style={styles.results}>
@@ -42,6 +23,29 @@ const CatalogFilters = (props) => {
           </Text>
         </TouchableOpacity>
       </View>
+    </>
+  );
+};
+
+const CatalogFiltersModal = (props) => {
+  return (
+    <>
+      <Modal
+        transparent={true}
+        visible={props.visible}
+        onRequestClose={props.onFilter}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <CategoriesFilter style={styles.categoriesContainer} onChange={props.onCategorySelected} />
+
+            <TouchableOpacity
+              style={styles.acceptButton}
+              onPress={props.onFilter}>
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </>
   );
 };
@@ -74,15 +78,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
-    marginTop: 110,
-    marginRight: 15,
+    marginTop: 130,
+    marginRight: 35,
   },
   modalView: {
-    margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
+    padding: 15,
+    alignItems: 'flex-start',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -91,27 +94,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    minWidth: '50%',
   },
-  button: {
+  acceptButton: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
     backgroundColor: '#2196F3',
   },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
+  categoriesContainer: {},
 });
 
 export default CatalogFilters;

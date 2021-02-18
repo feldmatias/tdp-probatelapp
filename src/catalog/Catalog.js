@@ -10,8 +10,56 @@ import {
 } from 'react-native';
 import Colors from 'react-native/Libraries/NewAppScreen/components/Colors';
 import {catalogItems} from './items/catalog_items';
-import CatalogFilters from './CatalogFilters';
+import CatalogFilters from './filters/CatalogFilters';
 import Separator from '../utils/Separator';
+
+const Catalog = ({navigation}) => {
+  const allItems = catalogItems;
+  const [filteredItems, setFilteredItems] = useState(allItems);
+  let selectedCategories = [];
+
+  const onCategorySelected = (newSelectedCategories) => {
+    selectedCategories = newSelectedCategories;
+    filterItems();
+  };
+
+  const filterItems = () => {
+    let items = [...allItems];
+    if (selectedCategories.length > 0) {
+      items = items.filter((item) =>
+        selectedCategories.includes(item.category),
+      );
+    }
+    setFilteredItems(items);
+  };
+
+  return (
+    <>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.titleContainer}>
+          <Image style={styles.clothesIcon} source={require('./clothes.png')} />
+          <Text style={styles.title}>{text.title}</Text>
+        </View>
+        <View style={styles.filters}>
+          <CatalogFilters
+            results={filteredItems.length}
+            onCategorySelected={onCategorySelected}
+          />
+        </View>
+        <Separator style={styles.separator} />
+        <FlatList
+          data={filteredItems}
+          renderItem={({item}) => (
+            <CatalogItem
+              onPress={() => navigation.navigate('Probador')}
+              item={item}
+            />
+          )}
+        />
+      </SafeAreaView>
+    </>
+  );
+};
 
 const CatalogItem = (props) => {
   return (
@@ -24,35 +72,6 @@ const CatalogItem = (props) => {
         </View>
       </View>
     </TouchableHighlight>
-  );
-};
-
-const Catalog = ({navigation}) => {
-  const items = catalogItems;
-  const [filteredItems, setFilteredItems] = useState(items);
-
-  return (
-    <>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Image style={styles.clothesIcon} source={require('./clothes.png')} />
-          <Text style={styles.title}>{text.title}</Text>
-        </View>
-        <View style={styles.filters}>
-          <CatalogFilters results={filteredItems.length} />
-        </View>
-        <Separator />
-        <FlatList
-          data={filteredItems}
-          renderItem={({item}) => (
-            <CatalogItem
-              onPress={() => navigation.navigate('Probador')}
-              item={item}
-            />
-          )}
-        />
-      </SafeAreaView>
-    </>
   );
 };
 
@@ -111,6 +130,10 @@ const styles = StyleSheet.create({
   filters: {
     margin: 10,
     marginTop: 0,
+  },
+  separator: {
+    margin: 5,
+    marginHorizontal: 15,
   },
 });
 
