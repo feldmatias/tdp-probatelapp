@@ -5,7 +5,7 @@ import {itemCategories} from '../items/catalog_items';
 
 const CategoriesFilter = (props) => {
   const allCategories = itemCategories;
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState(props.initial);
 
   const isSelected = (category) => selectedCategories.includes(category);
   const changeSelected = (category, selected) => {
@@ -14,7 +14,7 @@ const CategoriesFilter = (props) => {
       categories.push(category);
       setSelectedCategories(categories);
     } else {
-      categories = categories.filter(c => c !== category);
+      categories = categories.filter((c) => c !== category);
       setSelectedCategories(categories);
     }
     props.onChange(categories);
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   },
   separator: {
     marginBottom: 5,
+    width: 160,
   },
   checkboxContainer: {
     flexDirection: 'row',

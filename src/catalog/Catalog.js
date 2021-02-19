@@ -15,13 +15,8 @@ import Separator from '../utils/Separator';
 
 const Catalog = ({navigation}) => {
   const allItems = catalogItems;
-  const [filteredItems, setFilteredItems] = useState(allItems);
-  let selectedCategories = [];
-
-  const onCategorySelected = (newSelectedCategories) => {
-    selectedCategories = newSelectedCategories;
-    filterItems();
-  };
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [search, setSearch] = useState('');
 
   const filterItems = () => {
     let items = [...allItems];
@@ -30,7 +25,12 @@ const Catalog = ({navigation}) => {
         selectedCategories.includes(item.category),
       );
     }
-    setFilteredItems(items);
+    if (search !== '') {
+      items = items.filter((item) =>
+        item.key.toLowerCase().includes(search.toLowerCase()),
+      );
+    }
+    return items;
   };
 
   return (
@@ -42,13 +42,14 @@ const Catalog = ({navigation}) => {
         </View>
         <View style={styles.filters}>
           <CatalogFilters
-            results={filteredItems.length}
-            onCategorySelected={onCategorySelected}
+            results={filterItems().length}
+            onCategorySelected={setSelectedCategories}
+            onSearch={setSearch}
           />
         </View>
         <Separator style={styles.separator} />
         <FlatList
-          data={filteredItems}
+          data={filterItems()}
           renderItem={({item}) => (
             <CatalogItem
               onPress={() => navigation.navigate('Probador')}

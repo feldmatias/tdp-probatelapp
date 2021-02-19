@@ -2,15 +2,33 @@ import React, {useState} from 'react';
 import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Separator from '../../utils/Separator';
 import CategoriesFilter from './CategoriesFilter';
+import SearchFilter from './SearchFilter';
+import Button from 'react-native-bootstrap-buttons';
 
 const CatalogFilters = (props) => {
   const [showFilters, setShowFilters] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [search, setSearch] = useState('');
+
+  const onSearch = (text) => {
+    setSearch(text);
+    props.onSearch(text);
+  };
+
+  const onCategorySelected = (categories) => {
+    setSelectedCategories(categories);
+    props.onCategorySelected(categories);
+  };
+
   return (
     <>
       <CatalogFiltersModal
         visible={showFilters}
         onFilter={() => setShowFilters(false)}
-        onCategorySelected={props.onCategorySelected}
+        onCategorySelected={onCategorySelected}
+        onSearch={onSearch}
+        initialSearch={search}
+        initialCategories={selectedCategories}
       />
       <View style={styles.container}>
         <Text style={styles.results}>
@@ -36,13 +54,24 @@ const CatalogFiltersModal = (props) => {
         onRequestClose={props.onFilter}>
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
-            <CategoriesFilter style={styles.categoriesContainer} onChange={props.onCategorySelected} />
+            <CategoriesFilter
+              onChange={props.onCategorySelected}
+              initial={props.initialCategories}
+            />
+            <Separator style={styles.separator} />
+            <SearchFilter
+              onChange={props.onSearch}
+              initial={props.initialSearch}
+            />
 
-            <TouchableOpacity
-              style={styles.acceptButton}
-              onPress={props.onFilter}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </TouchableOpacity>
+            <Button
+              labelStyle={styles.buttonLabel}
+              containerStyle={styles.button}
+              label={text.accept}
+              buttonType="primary"
+              rounded
+              onPress={props.onFilter}
+            />
           </View>
         </View>
       </Modal>
@@ -53,6 +82,7 @@ const CatalogFiltersModal = (props) => {
 const text = {
   results: 'resultados',
   filter: 'Filtrar',
+  accept: 'Aplicar filtros',
 };
 
 const styles = StyleSheet.create({
@@ -96,13 +126,22 @@ const styles = StyleSheet.create({
     elevation: 5,
     minWidth: '50%',
   },
-  acceptButton: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    backgroundColor: '#2196F3',
+  separator: {
+    width: 160,
+    marginBottom: 10,
   },
-  categoriesContainer: {},
+  button: {
+    width: '70%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 15,
+    marginLeft: 25,
+    marginBottom: 2,
+  },
+  buttonLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
 
 export default CatalogFilters;
