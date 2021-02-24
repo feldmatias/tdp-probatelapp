@@ -28,6 +28,7 @@ const LandingPage = ({navigation}) => {
               label={text.recomendador}
               buttonType="primary"
               rounded
+              onPress={() => navigation.navigate('Recommender')}
             />
           </View>
         </ScrollView>
