@@ -6,6 +6,7 @@ import Probador from './probador/Probador';
 import Catalog from './catalog/Catalog';
 import SuccessPurchase from './store/SuccessPurchase';
 import Purchase from './store/Purchase';
+import Recommender from "./recommender/Recommender";
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,11 @@ const App: () => React$Node = () => {
         <Stack.Screen
           name="SuccessPurchase"
           component={SuccessPurchase}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Recommender"
+          component={Recommender}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
