@@ -7,6 +7,7 @@ import Catalog from './catalog/Catalog';
 import SuccessPurchase from './store/SuccessPurchase';
 import Purchase from './store/Purchase';
 import Recommender from "./recommender/Recommender";
+import RecommenderConfirm from "./recommender/RecommenderConfirm";
 
 const Stack = createStackNavigator();
 
@@ -50,6 +51,11 @@ const App: () => React$Node = () => {
         <Stack.Screen
           name="Recommender"
           component={Recommender}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="RecommenderConfirm"
+          component={RecommenderConfirm}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

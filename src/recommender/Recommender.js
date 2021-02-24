@@ -6,7 +6,7 @@ import Icon from 'react-native-ionicons';
 const Recommender = ({navigation}) => {
   let camera;
   const onCapture = () => {
-    navigation.navigate('Catalog');
+    navigation.navigate('RecommenderConfirm');
   };
   return (
     <>
