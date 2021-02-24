@@ -1,5 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, ActivityIndicator, Text} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ActivityIndicator,
+  Text,
+  Image,
+  ScrollView,
+} from 'react-native';
+import {selectedCatalogItem} from '../catalog/items/catalog_items';
+import Button from 'react-native-bootstrap-buttons';
 
 const RecommenderConfirm = ({navigation}) => {
   const [loading, setLoading] = useState(true);
@@ -23,8 +32,31 @@ const RecommenderConfirm = ({navigation}) => {
   };
   const confirmComponent = () => {
     return (
-      <View style={styles.loading}>
-        <Text style={styles.loadingText}>aca mostrar foto de la prenda</Text>
+      <View>
+        <Text style={styles.confirmText}>{text.recommended}</Text>
+        <View style={styles.logoContainer}>
+          <Image style={styles.logo} source={selectedCatalogItem.image} />
+          {/* TODO: poner imagen de prenda recomendada */}
+        </View>
+
+        <View style={styles.body}>
+          <Button
+            labelStyle={styles.buttonLabel}
+            containerStyle={styles.button}
+            label={text.buttonCancel}
+            buttonType="danger"
+            rounded
+            onPress={() => {}}
+          />
+          <Button
+            labelStyle={styles.buttonLabel}
+            containerStyle={styles.button}
+            label={text.buttonConfirm}
+            buttonType="primary"
+            rounded
+            onPress={() => navigation.navigate('Catalog')}
+          />
+        </View>
       </View>
     );
   };
@@ -39,6 +71,9 @@ const RecommenderConfirm = ({navigation}) => {
 
 const text = {
   loading: 'Detectando prendas...',
+  recommended: 'Detectamos esta prenda:',
+  buttonConfirm: 'Aceptar',
+  buttonCancel: 'Cancelar',
 };
 
 const styles = StyleSheet.create({
@@ -54,6 +89,39 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: 20,
+  },
+  logoContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo: {
+    width: '50%',
+    height: undefined,
+    aspectRatio: 1,
+    margin: 20,
+  },
+  body: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
+    flexDirection: 'row',
+  },
+  button: {
+    width: '40%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+  },
+  buttonLabel: {
+    fontSize: 25,
+  },
+  confirmText: {
+    fontSize: 35,
+    margin: 20,
+    marginTop: 90,
+    marginBottom: 5,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
   },
 });
 
