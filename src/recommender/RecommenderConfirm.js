@@ -1,17 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  View,
-  ActivityIndicator,
-  Text,
-  Image,
-  ScrollView,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
 import {selectedCatalogItem} from '../catalog/items/catalog_items';
 import Button from 'react-native-bootstrap-buttons';
 
 const RecommenderConfirm = ({navigation}) => {
   const [loading, setLoading] = useState(true);
+
+  const time_to_load = 5000;
 
   useEffect(() => {
     if (!loading) {
@@ -19,13 +14,13 @@ const RecommenderConfirm = ({navigation}) => {
     }
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, time_to_load);
   });
 
   const loadingComponent = () => {
     return (
       <View style={styles.loading}>
-        <ActivityIndicator size="large" color="#1c7dd6" />
+        <ActivityIndicator size={70} color="#1c7dd6" />
         <Text style={styles.loadingText}>{text.loading}</Text>
       </View>
     );
@@ -92,7 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   loadingText: {
-    fontSize: 20,
+    fontSize: 30,
   },
   logoContainer: {
     justifyContent: 'center',
