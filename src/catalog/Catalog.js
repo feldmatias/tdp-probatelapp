@@ -9,17 +9,27 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import Colors from 'react-native/Libraries/NewAppScreen/components/Colors';
-import {catalogItems} from './items/catalog_items';
+import {catalogItems, recommendedItems} from './items/catalog_items';
 import CatalogFilters from './filters/CatalogFilters';
 import Separator from '../utils/Separator';
 
-const Catalog = ({navigation}) => {
-  const allItems = catalogItems;
+const Catalog = ({route, navigation}) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [search, setSearch] = useState('');
+  const {isRecommender} = route.params;
+
+  const allItems = () => {
+    return isRecommender ? recommendedItems : catalogItems;
+  };
+
+  const goToProbador = () => {
+    navigation.navigate('Probador', {
+      isRecommender: isRecommender,
+    });
+  };
 
   const filterItems = () => {
-    let items = [...allItems];
+    let items = [...allItems()];
     if (selectedCategories.length > 0) {
       items = items.filter((item) =>
         selectedCategories.includes(item.category),
@@ -38,23 +48,23 @@ const Catalog = ({navigation}) => {
       <SafeAreaView style={styles.container}>
         <View style={styles.titleContainer}>
           <Image style={styles.clothesIcon} source={require('./clothes.png')} />
-          <Text style={styles.title}>{text.title}</Text>
+          <Text style={styles.title}>
+            {isRecommender ? text.recommender : text.title}
+          </Text>
         </View>
         <View style={styles.filters}>
           <CatalogFilters
             results={filterItems().length}
             onCategorySelected={setSelectedCategories}
             onSearch={setSearch}
+            disable={isRecommender}
           />
         </View>
         <Separator style={styles.separator} />
         <FlatList
           data={filterItems()}
           renderItem={({item}) => (
-            <CatalogItem
-              onPress={() => navigation.navigate('Probador')}
-              item={item}
-            />
+            <CatalogItem onPress={goToProbador} item={item} />
           )}
         />
       </SafeAreaView>
@@ -78,6 +88,7 @@ const CatalogItem = (props) => {
 
 const text = {
   title: 'Elegí la prenda para probarte:',
+  recommender: 'Te recomendamos estas prendas:',
 };
 
 const styles = StyleSheet.create({

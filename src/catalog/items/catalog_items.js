@@ -6,19 +6,35 @@ export const itemCategories = [
   'Shorts',
 ];
 
-export const catalogItems = [
+export const selectedRecommendedItem = {
+  key: 'Pantalón de jean',
+  image: require('./jean.jpg'),
+  price: '500.00',
+  category: 'Jeans',
+};
+
+const fullRecommendedItems = [
   {
-    key: 'Remera roja',
-    image: require('./remera_roja.png'),
-    price: '123.00',
-    category: 'Remeras',
+    key: 'Zapatillas',
+    image: require('./zapatillas.jpg'),
+    price: '800.00',
+    category: 'Zapatillas',
   },
-  {
-    key: 'Pantalón de jean',
-    image: require('./jean.jpg'),
-    price: '500.00',
-    category: 'Jeans',
-  },
+];
+
+export const recommendedItems = [
+  ...[selectedRecommendedItem],
+  ...fullRecommendedItems,
+];
+
+export const selectedCatalogItem = {
+  key: 'Remera roja',
+  image: require('./remera_roja.png'),
+  price: '123.00',
+  category: 'Remeras',
+};
+
+const fullCatalogItems = [
   {
     key: 'Buzo azul',
     image: require('./buzo_azul.jpg'),
@@ -37,12 +53,10 @@ export const catalogItems = [
     price: '999.99',
     category: 'Jeans',
   },
-  {
-    key: 'Zapatillas',
-    image: require('./zapatillas.jpg'),
-    price: '800.00',
-    category: 'Zapatillas',
-  },
 ];
 
-export const selectedCatalogItem = catalogItems[0];
+export const catalogItems = [
+  ...[selectedCatalogItem],
+  ...fullCatalogItems,
+  ...recommendedItems,
+];

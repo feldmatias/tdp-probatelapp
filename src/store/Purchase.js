@@ -10,18 +10,25 @@ import {
 
 import Button from 'react-native-bootstrap-buttons';
 import RadioButton from '../utils/RadioButton';
-import {selectedCatalogItem} from '../catalog/items/catalog_items';
+import {
+  selectedCatalogItem,
+  selectedRecommendedItem,
+} from '../catalog/items/catalog_items';
 
-const Purchase = ({navigation}) => {
+const Purchase = ({route, navigation}) => {
+  const {isRecommender} = route.params;
+
+  const item = () =>
+    isRecommender ? selectedRecommendedItem : selectedCatalogItem;
   return (
     <>
       <SafeAreaView style={styles.container}>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           <Text style={styles.confirmText}>{text.confirm}</Text>
           <View style={styles.logoContainer}>
-            <Image style={styles.logo} source={selectedCatalogItem.image} />
-            <Text style={styles.itemName}>{selectedCatalogItem.key}</Text>
-            <Text style={styles.itemPrice}>${selectedCatalogItem.price}</Text>
+            <Image style={styles.logo} source={item().image} />
+            <Text style={styles.itemName}>{item().key}</Text>
+            <Text style={styles.itemPrice}>${item().price}</Text>
           </View>
 
           <View style={styles.radioGroup}>

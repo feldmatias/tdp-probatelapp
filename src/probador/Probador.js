@@ -4,15 +4,27 @@ import Video from 'react-native-video';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Button from 'react-native-bootstrap-buttons';
 
-const Probador = ({navigation}) => {
+const Probador = ({route, navigation}) => {
   const [video, setVideo] = useState(null);
   const [running, setRunning] = useState(false);
   const [stepNumber, setStepNumber] = useState(0);
-  const startTime = 1.8;
-  const steps = [13.7, 17.2, 30.6, 35]; // in seconds
+  const {isRecommender} = route.params;
+  const startTimeProbador = 1.8;
+  const stepsProbador = [13.7, 17.2, 30.6, 35]; // in seconds
+  const startTimeRecommender = 0.2;
+  const stepsRecommender = [2.7, 17.2, 30.6, 35]; // in seconds
+
+  const startTime = () =>
+    isRecommender ? startTimeRecommender : startTimeProbador;
+  const steps = () => (isRecommender ? stepsRecommender : stepsProbador);
+
+  const source = () =>
+    isRecommender
+      ? require('./probador_virtual.mp4')
+      : require('./probador_virtual.mp4');
 
   const checkTime = (currentTime) => {
-    if (currentTime >= steps[stepNumber]) {
+    if (currentTime >= steps()[stepNumber]) {
       setStepNumber(stepNumber + 1);
       setRunning(false);
     }
@@ -31,7 +43,7 @@ const Probador = ({navigation}) => {
           directionalOffsetThreshold: 80,
         }}>
         <Video
-          source={require('./probador_virtual.mp4')}
+          source={source()}
           ref={(ref) => {
             setVideo(ref);
           }}
@@ -39,7 +51,7 @@ const Probador = ({navigation}) => {
           resizeMode={'stretch'}
           muted={true}
           paused={!running}
-          onLoad={() => video.seek(startTime)}
+          onLoad={() => video.seek(startTime())}
           onProgress={({currentTime}) => checkTime(currentTime)}
         />
       </GestureRecognizer>
@@ -57,7 +69,9 @@ const Probador = ({navigation}) => {
         label={'√'}
         buttonType="success"
         onPress={() => {
-          navigation.navigate('Purchase');
+          navigation.navigate('Purchase', {
+            isRecommender: isRecommender,
+          });
         }}
       />
     </>

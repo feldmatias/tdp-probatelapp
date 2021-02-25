@@ -19,7 +19,11 @@ const LandingPage = ({navigation}) => {
               label={text.probador}
               buttonType="primary"
               rounded
-              onPress={() => navigation.navigate('Catalog')}
+              onPress={() =>
+                navigation.navigate('Catalog', {
+                  isRecommender: false,
+                })
+              }
             />
 
             <Button

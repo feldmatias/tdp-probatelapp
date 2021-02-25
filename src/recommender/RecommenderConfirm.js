@@ -54,7 +54,11 @@ const RecommenderConfirm = ({navigation}) => {
             label={text.buttonConfirm}
             buttonType="primary"
             rounded
-            onPress={() => navigation.navigate('Catalog')}
+            onPress={() =>
+              navigation.navigate('Catalog', {
+                isRecommender: true,
+              })
+            }
           />
         </View>
       </View>

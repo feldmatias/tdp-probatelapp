@@ -34,12 +34,14 @@ const CatalogFilters = (props) => {
         <Text style={styles.results}>
           {props.results || 0} {text.results}
         </Text>
-        <Text style={styles.results}>|</Text>
-        <TouchableOpacity onPress={() => setShowFilters(true)}>
-          <Text style={[styles.results, styles.link]}>
-            {text.filter} <Text style={styles.filterArrow}>ᐯ</Text>
-          </Text>
-        </TouchableOpacity>
+        {props.disable ? null : <Text style={styles.results}>|</Text>}
+        {props.disable ? null : (
+          <TouchableOpacity onPress={() => setShowFilters(true)}>
+            <Text style={[styles.results, styles.link]}>
+              {text.filter} <Text style={styles.filterArrow}>ᐯ</Text>
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </>
   );
