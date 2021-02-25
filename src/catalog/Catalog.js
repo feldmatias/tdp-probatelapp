@@ -47,7 +47,12 @@ const Catalog = ({route, navigation}) => {
     <>
       <SafeAreaView style={styles.container}>
         <View style={styles.titleContainer}>
-          <Image style={styles.clothesIcon} source={require('./clothes.png')} />
+          {isRecommender ? null : (
+            <Image
+              style={styles.clothesIcon}
+              source={require('./clothes.png')}
+            />
+          )}
           <Text style={styles.title}>
             {isRecommender ? text.recommender : text.title}
           </Text>
@@ -88,7 +93,7 @@ const CatalogItem = (props) => {
 
 const text = {
   title: 'Elegí la prenda para probarte:',
-  recommender: 'Te recomendamos estas prendas:',
+  recommender: 'Nuestras recomendaciones:',
 };
 
 const styles = StyleSheet.create({
