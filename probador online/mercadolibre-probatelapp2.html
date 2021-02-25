@@ -779,7 +779,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   Your browser does not support the video tag.
 </video>
 
-<video width="800" height="600" class="probador-video" id="videoGrande" style="display: none">
+<video width="432" height="768" class="probador-video" id="videoGrande" style="display: none">
   <source src="./videoGrande.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -815,7 +815,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   window.onload = function () {
     current_size
-    let video = document.getElementById("videoChico");
+    let video = document.getElementById("videoGrande");
     
     video.addEventListener("click", () => {
       video.play();
@@ -862,7 +862,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .probador-video {
         position: absolute;
         top: 140px;
-        left: 220px;
+        left: 600px;
         z-index: 9999999;
         background-color: lightgrey;
     }
