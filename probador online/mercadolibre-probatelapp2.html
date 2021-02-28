@@ -786,6 +786,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script>
   let current_size = 0;
+  let currentStep = 0;
+
+  //tiempos en los que se pausa el video, para simular interaccion con usuario
+  let videoGrandeTimes = [10.85, 14.85, 99999];
+  let videoChicoTimes = [1, 2, 99999]; //TODO: modificar
 
   function activar_probador() {
     let button = document.getElementById("probador");
@@ -802,6 +807,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       }else{
         video.style.display = "block";
         video.currentTime = 0;
+        currentStep = 0;
       }
     })
   }
@@ -815,20 +821,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     });
   }
 
-  window.onload = function () {
-    let video = document.getElementById("videoGrande");
+  function init_video(id, pauseTimes) {
+    let video = document.getElementById(id);
     video.volume = 0;
 
     video.addEventListener("click", () => {
       video.play();
     })
 
-    let video2 = document.getElementById("videoChico");
-    video2.volume = 0;
+    video.addEventListener('timeupdate', (event) => {
+      if (video.currentTime >= pauseTimes[currentStep]) {
+        video.pause();
+        currentStep += 1;
+      }
+    });
 
-    video2.addEventListener("click", () => {
-      video2.play();
-    })
+  }
+
+  window.onload = function () {
+    init_video("videoGrande", videoGrandeTimes);
+    init_video("videoChico", videoChicoTimes);
 
     setTimeout(function () {
       document.getElementsByClassName('ui-pdp-variations__label ui-pdp-color--BLACK')[0].innerHTML =
