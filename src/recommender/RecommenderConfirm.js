@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
-import {selectedCatalogItem} from '../catalog/items/catalog_items';
+import {
+  selectedCatalogItem,
+  selectedRecommendedItem,
+} from '../catalog/items/catalog_items';
 import Button from 'react-native-bootstrap-buttons';
 
 const RecommenderConfirm = ({navigation}) => {
@@ -30,8 +33,7 @@ const RecommenderConfirm = ({navigation}) => {
       <View>
         <Text style={styles.confirmText}>{text.recommended}</Text>
         <View style={styles.logoContainer}>
-          <Image style={styles.logo} source={selectedCatalogItem.image} />
-          {/* TODO: poner imagen de prenda recomendada */}
+          <Image style={styles.logo} source={selectedRecommendedItem.image} />
         </View>
 
         <View style={styles.body}>
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
   logo: {
     width: '50%',
     height: undefined,
-    aspectRatio: 1,
+    aspectRatio: 1.26,
     margin: 20,
   },
   body: {

@@ -12,14 +12,14 @@ import Button from 'react-native-bootstrap-buttons';
 import RadioButton from '../utils/RadioButton';
 import {
   selectedCatalogItem,
-  selectedRecommendedItem,
+  userRecommendedItem,
 } from '../catalog/items/catalog_items';
 
 const Purchase = ({route, navigation}) => {
   const {isRecommender} = route.params;
 
   const item = () =>
-    isRecommender ? selectedRecommendedItem : selectedCatalogItem;
+    isRecommender ? userRecommendedItem : selectedCatalogItem;
   return (
     <>
       <SafeAreaView style={styles.container}>

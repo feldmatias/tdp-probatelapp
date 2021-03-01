@@ -6,24 +6,51 @@ export const itemCategories = [
   'Shorts',
 ];
 
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export const selectedRecommendedItem = {
-  key: 'Pantalón de jean',
-  image: require('./jean.jpg'),
-  price: '500.00',
+  key: 'Short de Jean',
+  image: require('./jean_recommender.png'),
+  price: '876.00',
   category: 'Jeans',
+};
+
+export const userRecommendedItem = {
+  key: 'Camisa Rosa',
+  image: require('./camisa_recomendada.png'),
+  price: '876.00',
+  category: '',
 };
 
 const fullRecommendedItems = [
   {
-    key: 'Zapatillas',
-    image: require('./zapatillas.jpg'),
-    price: '800.00',
+    key: 'Cinturón negro',
+    image: require('./cinturon.jpg'),
+    price: '300.00',
+    category: '',
+  },
+  {
+    key: 'Remera un solo hombro',
+    image: require('./remera_hombro.png'),
+    price: '900.00',
+    category: 'Remeras',
+  },
+  {
+    key: 'Zapatos',
+    image: require('./zapatos.png'),
+    price: '777.00',
     category: 'Zapatillas',
   },
 ];
 
 export const recommendedItems = [
-  ...[selectedRecommendedItem],
+  ...[userRecommendedItem],
   ...fullRecommendedItems,
 ];
 
@@ -53,10 +80,21 @@ const fullCatalogItems = [
     price: '999.99',
     category: 'Jeans',
   },
+  {
+    key: 'Pantalón de jean',
+    image: require('./jean.jpg'),
+    price: '500.00',
+    category: 'Jeans',
+  },
+  {
+    key: 'Zapatillas',
+    image: require('./zapatillas.jpg'),
+    price: '800.00',
+    category: 'Zapatillas',
+  },
 ];
 
 export const catalogItems = [
   ...[selectedCatalogItem],
-  ...fullCatalogItems,
-  ...recommendedItems,
+  ...shuffle([...fullCatalogItems, ...recommendedItems]),
 ];
