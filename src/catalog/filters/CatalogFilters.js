@@ -4,10 +4,12 @@ import Separator from '../../utils/Separator';
 import CategoriesFilter from './CategoriesFilter';
 import SearchFilter from './SearchFilter';
 import Button from 'react-native-bootstrap-buttons';
+import ColorsFilter from './ColorsFilter';
 
 const CatalogFilters = (props) => {
   const [showFilters, setShowFilters] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
   const [search, setSearch] = useState('');
 
   const onSearch = (text) => {
@@ -20,15 +22,22 @@ const CatalogFilters = (props) => {
     props.onCategorySelected(categories);
   };
 
+  const onColorSelected = (colors) => {
+    setSelectedColors(colors);
+    props.onColorSelected(colors);
+  };
+
   return (
     <>
       <CatalogFiltersModal
         visible={showFilters}
         onFilter={() => setShowFilters(false)}
         onCategorySelected={onCategorySelected}
+        onColorSelected={onColorSelected}
         onSearch={onSearch}
         initialSearch={search}
         initialCategories={selectedCategories}
+        initialColors={selectedColors}
       />
       <View style={styles.container}>
         <Text style={styles.results}>
@@ -38,7 +47,8 @@ const CatalogFilters = (props) => {
         {props.disable ? null : (
           <TouchableOpacity onPress={() => setShowFilters(true)}>
             <Text style={[styles.results, styles.link]}>
-              {text.filter} <Text style={styles.filterArrow}>ᐯ</Text>
+              {text.filter}{' '}
+              {showFilters ? '  ' : <Text style={styles.filterArrow}>ᐯ</Text>}
             </Text>
           </TouchableOpacity>
         )}
@@ -61,10 +71,16 @@ const CatalogFiltersModal = (props) => {
               initial={props.initialCategories}
             />
             <Separator style={styles.separator} />
+            <ColorsFilter
+              onChange={props.onColorSelected}
+              initial={props.initialColors}
+            />
+            <Separator style={styles.separator} />
             <SearchFilter
               onChange={props.onSearch}
               initial={props.initialSearch}
             />
+            <Separator style={styles.separator} />
 
             <Button
               labelStyle={styles.buttonLabel}
@@ -126,10 +142,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    minWidth: '50%',
+    minWidth: '60%',
   },
   separator: {
-    width: 160,
+    width: 190,
     marginBottom: 10,
   },
   button: {

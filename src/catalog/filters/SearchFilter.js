@@ -1,25 +1,45 @@
-import React from 'react';
-import {Image, StyleSheet, TextInput, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import Separator from '../../utils/Separator';
 
 const SearchFilter = (props) => {
+  const [open, setOpen] = useState(false);
+
   const onChangeText = (text) => {
     props.onChange(text);
   };
 
   return (
     <>
-      <View style={styles.container}>
-        <View style={styles.iconContainer}>
-          <Image source={require('./search.png')} style={styles.icon} />
-        </View>
+      <View style={[styles.mainContainer, props.style]}>
+        <TouchableOpacity onPress={() => setOpen(!open)}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{text.name}</Text>
+            <Text style={styles.filterArrow}>{open ? 'Λ' : 'ᐯ'}</Text>
+          </View>
+        </TouchableOpacity>
+        {open ? (
+          <View style={styles.container}>
+            <View style={styles.iconContainer}>
+              <Image source={require('./search.png')} style={styles.icon} />
+            </View>
 
-        <TextInput
-          style={styles.input}
-          placeholder={text.placeholder}
-          underlineColorAndroid="transparent"
-          onChangeText={onChangeText}
-          defaultValue={props.initial}
-        />
+            <TextInput
+              style={styles.input}
+              placeholder={text.placeholder}
+              underlineColorAndroid="transparent"
+              onChangeText={onChangeText}
+              defaultValue={props.initial}
+            />
+          </View>
+        ) : null}
       </View>
     </>
   );
@@ -27,10 +47,14 @@ const SearchFilter = (props) => {
 
 const text = {
   placeholder: 'Filtrar...',
+  name: 'Nombre',
 };
 
 const styles = StyleSheet.create({
+  mainContainer: {},
   container: {
+    marginTop: 5,
+    marginBottom: 8,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -40,24 +64,42 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 5,
     margin: 2,
-    width: 160,
+    width: 190,
   },
   iconContainer: {
     backgroundColor: 'lightgrey',
     borderRadius: 5,
     height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   icon: {
-    padding: 10,
+    padding: 5,
     margin: 5,
-    height: 25,
-    width: 25,
+    height: 15,
+    width: 15,
     resizeMode: 'stretch',
     alignItems: 'center',
   },
   input: {
     flex: 1,
     fontSize: 15,
+  },
+  title: {
+    marginBottom: 5,
+    fontSize: 20,
+  },
+  filterArrow: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 18,
+    color: 'gray',
+    marginLeft: 90,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 

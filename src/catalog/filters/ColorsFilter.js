@@ -1,36 +1,36 @@
 import React, {useState} from 'react';
 import {CheckBox, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Separator from '../../utils/Separator';
-import {itemCategories} from '../items/catalog_items';
+import {itemColors} from '../items/catalog_items';
 
-const CategoriesFilter = (props) => {
-  const allCategories = itemCategories;
-  const [selectedCategories, setSelectedCategories] = useState(props.initial);
+const ColorsFilter = (props) => {
+  const allColors = itemColors;
+  const [selectedColors, setSelectedColors] = useState(props.initial);
   const [open, setOpen] = useState(false);
 
-  const isSelected = (category) => selectedCategories.includes(category);
-  const changeSelected = (category, selected) => {
-    let categories = [...selectedCategories];
+  const isSelected = (color) => selectedColors.includes(color);
+  const changeSelected = (color, selected) => {
+    let colors = [...selectedColors];
     if (selected) {
-      categories.push(category);
-      setSelectedCategories(categories);
+      colors.push(color);
+      setSelectedColors(colors);
     } else {
-      categories = categories.filter((c) => c !== category);
-      setSelectedCategories(categories);
+      colors = colors.filter((c) => c !== color);
+      setSelectedColors(colors);
     }
-    props.onChange(categories);
+    props.onChange(colors);
   };
 
-  const renderCheckbox = (category) => {
+  const renderCheckbox = (color) => {
     return (
       <View style={styles.checkboxContainer}>
         <CheckBox
-          value={isSelected(category)}
-          onValueChange={(selected) => changeSelected(category, selected)}
+          value={isSelected(color)}
+          onValueChange={(selected) => changeSelected(color, selected)}
           style={styles.checkbox}
           tintColors={{true: '#1c7dd6', false: '#1c7dd6'}}
         />
-        <Text style={styles.label}>{category}</Text>
+        <Text style={styles.label}>{color}</Text>
       </View>
     );
   };
@@ -40,14 +40,14 @@ const CategoriesFilter = (props) => {
       <View style={[styles.container, props.style]}>
         <TouchableOpacity onPress={() => setOpen(!open)}>
           <View style={styles.titleContainer}>
-            <Text style={styles.categoriesTitle}>{text.categories}</Text>
+            <Text style={styles.categoriesTitle}>{text.colors}</Text>
             <Text style={styles.filterArrow}>{open ? 'Λ' : 'ᐯ'}</Text>
           </View>
         </TouchableOpacity>
         {open ? (
           <View>
             <Separator style={styles.separator} />
-            {allCategories.map(renderCheckbox)}
+            {allColors.map(renderCheckbox)}
           </View>
         ) : null}
       </View>
@@ -56,13 +56,12 @@ const CategoriesFilter = (props) => {
 };
 
 const text = {
-  categories: 'Categorías',
+  colors: 'Colores',
 };
 
 const styles = StyleSheet.create({
   container: {
     marginBottom: 5,
-    width: '100%',
   },
   categoriesTitle: {
     marginBottom: 5,
@@ -84,17 +83,16 @@ const styles = StyleSheet.create({
   },
   filterArrow: {
     height: '100%',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
     fontSize: 18,
     color: 'gray',
-    marginLeft: 65,
+    marginLeft: 93,
   },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: '100%',
   },
 });
 
-export default CategoriesFilter;
+export default ColorsFilter;

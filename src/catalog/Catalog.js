@@ -15,6 +15,7 @@ import Separator from '../utils/Separator';
 
 const Catalog = ({route, navigation}) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
   const [search, setSearch] = useState('');
   const {isRecommender} = route.params;
 
@@ -34,6 +35,9 @@ const Catalog = ({route, navigation}) => {
       items = items.filter((item) =>
         selectedCategories.includes(item.category),
       );
+    }
+    if (selectedColors.length > 0) {
+      items = items.filter((item) => selectedColors.includes(item.color));
     }
     if (search !== '') {
       items = items.filter((item) =>
@@ -61,6 +65,7 @@ const Catalog = ({route, navigation}) => {
           <CatalogFilters
             results={filterItems().length}
             onCategorySelected={setSelectedCategories}
+            onColorSelected={setSelectedColors}
             onSearch={setSearch}
             disable={isRecommender}
           />
