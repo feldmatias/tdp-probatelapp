@@ -790,7 +790,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   //tiempos en los que se pausa el video, para simular interaccion con usuario
   let videoGrandeTimes = [10.85, 14.85, 99999];
-  let videoChicoTimes = [8.4, 11, 99999]; //TODO: modificar
+  let videoChicoTimes = [8.4, 11, 99999];
 
   function activar_probador() {
     let button = document.getElementById("probador");
@@ -808,6 +808,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         video.style.display = "block";
         video.currentTime = 0;
         currentStep = 0;
+        console.log(currentStep)
       }
     })
   }
@@ -826,6 +827,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     video.volume = 0;
 
     video.addEventListener("click", () => {
+      console.log(currentStep, pauseTimes)
+      if (currentStep >= pauseTimes.length) {
+        return;
+      }
       video.play();
     })
 
@@ -833,7 +838,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       if (video.currentTime >= pauseTimes[currentStep]) {
         video.pause();
         currentStep += 1;
+        console.log(currentStep)
       }
+    });
+
+    video.addEventListener('ended', (event) => {
+      console.log("end")
+      currentStep += 1;
     });
 
   }
