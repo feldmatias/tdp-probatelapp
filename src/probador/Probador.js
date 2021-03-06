@@ -1,8 +1,9 @@
-import {StyleSheet} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import Video from 'react-native-video';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Button from 'react-native-bootstrap-buttons';
+import ActionButton from 'react-native-action-button';
 
 const Probador = ({route, navigation}) => {
   let video = null;
@@ -74,6 +75,60 @@ const Probador = ({route, navigation}) => {
           });
         }}
       />
+      {isRecommender ? (
+        <ActionButton
+          buttonColor={'rgba(28,125,214,1)'}
+          position={'center'}
+          size={75}
+          offsetY={20}
+          renderIcon={() => (
+            <Image
+              style={styles.actionButtonIcon}
+              source={require('./actions/person.png')}
+            />
+          )}>
+          <ActionButton.Item
+            buttonColor={'rgba(28,85,200,1)'}
+            title=""
+            size={65}
+            onPress={() => setRunning(true)}>
+            <Image
+              style={styles.actionButtonIcon}
+              source={require('./actions/piernas.png')}
+            />
+          </ActionButton.Item>
+          <ActionButton.Item
+            buttonColor={'rgba(28,85,200,1)'}
+            title=""
+            size={65}
+            onPress={() => setRunning(true)}>
+            <Image
+              style={styles.actionButtonIcon}
+              source={require('./actions/caminar.png')}
+            />
+          </ActionButton.Item>
+          <ActionButton.Item
+            buttonColor={'rgba(28,85,200,1)'}
+            title=""
+            size={65}
+            onPress={() => setRunning(true)}>
+            <Image
+              style={styles.actionButtonIcon}
+              source={require('./actions/trotar.png')}
+            />
+          </ActionButton.Item>
+          <ActionButton.Item
+            buttonColor={'rgba(28,85,200,1)'}
+            title=""
+            size={65}
+            onPress={() => setRunning(true)}>
+            <Image
+              style={styles.actionButtonIcon}
+              source={require('./actions/sentarse.png')}
+            />
+          </ActionButton.Item>
+        </ActionButton>
+      ) : null}
     </>
   );
 };
@@ -103,6 +158,10 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
     color: 'white',
+  },
+  actionButtonIcon: {
+    width: 35,
+    height: 50,
   },
 });
 
