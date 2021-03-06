@@ -12,7 +12,7 @@ const Probador = ({route, navigation}) => {
   const startTimeProbador = 1.8;
   const stepsProbador = [13.7, 17.2, 30.6, 35]; // in seconds
   const startTimeRecommender = 0.2;
-  const stepsRecommender = [2.7, 17.2, 30.6, 35]; // in seconds
+  const stepsRecommender = [3, 6, 9, 12, 18]; // in seconds
 
   const startTime = () =>
     isRecommender ? startTimeRecommender : startTimeProbador;
@@ -20,7 +20,7 @@ const Probador = ({route, navigation}) => {
 
   const source = () =>
     isRecommender
-      ? require('./probador_virtual.mp4')
+      ? require('./recommender.mp4')
       : require('./probador_virtual.mp4');
 
   const checkTime = (currentTime) => {

@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
-import {
-  selectedCatalogItem,
-  selectedRecommendedItem,
-} from '../catalog/items/catalog_items';
+import {selectedRecommendedItem} from '../catalog/items/catalog_items';
 import Button from 'react-native-bootstrap-buttons';
 
 const RecommenderConfirm = ({navigation}) => {
   const [loading, setLoading] = useState(true);
 
-  const time_to_load = 5000;
+  const time_to_load = 8000;
 
   useEffect(() => {
     if (!loading) {
