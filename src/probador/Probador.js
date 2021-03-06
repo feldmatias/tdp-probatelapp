@@ -5,14 +5,14 @@ import GestureRecognizer from 'react-native-swipe-gestures';
 import Button from 'react-native-bootstrap-buttons';
 
 const Probador = ({route, navigation}) => {
-  const [video, setVideo] = useState(null);
+  let video = null;
   const [running, setRunning] = useState(false);
   const [stepNumber, setStepNumber] = useState(0);
   const {isRecommender} = route.params;
   const startTimeProbador = 1.8;
   const stepsProbador = [13.7, 17.2, 30.6, 35]; // in seconds
-  const startTimeRecommender = 0.2;
-  const stepsRecommender = [3, 6, 9, 12, 18]; // in seconds
+  const startTimeRecommender = 0;
+  const stepsRecommender = [1.5, 4.52, 7.1, 10.9, 999]; // in seconds
 
   const startTime = () =>
     isRecommender ? startTimeRecommender : startTimeProbador;
@@ -45,7 +45,7 @@ const Probador = ({route, navigation}) => {
         <Video
           source={source()}
           ref={(ref) => {
-            setVideo(ref);
+            video = ref;
           }}
           style={styles.video}
           resizeMode={'stretch'}

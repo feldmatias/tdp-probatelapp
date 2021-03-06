@@ -23,36 +23,39 @@ function shuffle(a) {
   return a;
 }
 
+// item taken from the camera
 export const selectedRecommendedItem = {
-  key: 'Short de Jean',
-  image: require('./jean_recommender.png'),
-  price: '876.00',
-  category: 'Jeans',
-  color: 'Azul',
-};
-
-export const userRecommendedItem = {
-  key: 'Camisa Rosa',
-  image: require('./camisa_recomendada.png'),
+  key: 'Remera rosa con mangas',
+  image: require('./remera_recomendador.png'),
   price: '876.00',
   category: '',
   color: '',
 };
 
+// recommended item that will be chosen
+export const userRecommendedItem = {
+  key: 'Pantalón de jean para mujer',
+  image: require('./jean_recomendador.png'),
+  price: '876.00',
+  category: 'Jeans',
+  color: 'Azul',
+};
+
+// all other recommended items
 const fullRecommendedItems = [
+  {
+    key: 'Short de jean',
+    image: require('./jean_recommender.png'),
+    price: '876.99',
+    category: 'Jeans',
+    color: 'Azul',
+  },
   {
     key: 'Cinturón negro',
     image: require('./cinturon.jpg'),
     price: '300.00',
     category: '',
     color: 'Negro',
-  },
-  {
-    key: 'Remera un solo hombro',
-    image: require('./remera_hombro.png'),
-    price: '900.00',
-    category: 'Remeras',
-    color: 'Blanco',
   },
   {
     key: 'Zapatos',
@@ -68,6 +71,7 @@ export const recommendedItems = [
   ...fullRecommendedItems,
 ];
 
+// item from the catalog that will be chosen
 export const selectedCatalogItem = {
   key: 'Remera roja',
   image: require('./remera_roja.png'),
@@ -76,6 +80,7 @@ export const selectedCatalogItem = {
   color: 'Rojo',
 };
 
+// all catalog items
 const fullCatalogItems = [
   {
     key: 'Buzo azul',
@@ -99,11 +104,18 @@ const fullCatalogItems = [
     color: 'Azul',
   },
   {
-    key: 'Pantalón de jean',
+    key: 'Pantalón de jean para hombre',
     image: require('./jean.jpg'),
     price: '500.00',
     category: 'Jeans',
     color: 'Azul',
+  },
+  {
+    key: 'Remera un solo hombro',
+    image: require('./remera_hombro.png'),
+    price: '900.00',
+    category: 'Remeras',
+    color: 'Blanco',
   },
   {
     key: 'Pantalón de jean rojo',
@@ -118,6 +130,13 @@ const fullCatalogItems = [
     price: '800.00',
     category: 'Zapatillas',
     color: 'Blanco',
+  },
+  {
+    key: 'Camisa Rosa',
+    image: require('./camisa_recomendada.png'),
+    price: '876.00',
+    category: '',
+    color: '',
   },
 ];
 

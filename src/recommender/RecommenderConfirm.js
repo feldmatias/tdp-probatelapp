@@ -6,7 +6,7 @@ import Button from 'react-native-bootstrap-buttons';
 const RecommenderConfirm = ({navigation}) => {
   const [loading, setLoading] = useState(true);
 
-  const time_to_load = 8000;
+  const time_to_load = 12000;
 
   useEffect(() => {
     if (!loading) {
