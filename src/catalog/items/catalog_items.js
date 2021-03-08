@@ -34,7 +34,7 @@ export const selectedRecommendedItem = {
 
 // recommended item that will be chosen
 export const userRecommendedItem = {
-  key: 'Pantalón de jean para mujer',
+  key: 'Jean azul',
   image: require('./jean_recomendador.png'),
   price: '876.00',
   category: 'Jeans',
@@ -44,6 +44,27 @@ export const userRecommendedItem = {
 // all other recommended items
 const fullRecommendedItems = [
   {
+    key: 'Jean negro',
+    image: require('./jean_negro.png'),
+    price: '700.00',
+    category: 'Jeans',
+    color: 'Negro',
+  },
+  {
+    key: 'Jean blanco',
+    image: require('./jean_blanco.png'),
+    price: '918.27',
+    category: 'Jeans',
+    color: 'Blanco',
+  },
+  {
+    key: 'Pollera negra',
+    image: require('./pollera_negra.png'),
+    price: '350.00',
+    category: '',
+    color: 'Negro',
+  },
+  {
     key: 'Short de jean',
     image: require('./jean_recommender.png'),
     price: '876.99',
@@ -51,10 +72,10 @@ const fullRecommendedItems = [
     color: 'Azul',
   },
   {
-    key: 'Cinturón negro',
-    image: require('./cinturon.jpg'),
-    price: '300.00',
-    category: '',
+    key: 'Short de jean negro',
+    image: require('./short_negro_jean.png'),
+    price: '444.99',
+    category: 'Jeans',
     color: 'Negro',
   },
   {
@@ -104,13 +125,6 @@ const fullCatalogItems = [
     color: 'Azul',
   },
   {
-    key: 'Pantalón de jean para hombre',
-    image: require('./jean.jpg'),
-    price: '500.00',
-    category: 'Jeans',
-    color: 'Azul',
-  },
-  {
     key: 'Remera un solo hombro',
     image: require('./remera_hombro.png'),
     price: '900.00',
@@ -118,11 +132,18 @@ const fullCatalogItems = [
     color: 'Blanco',
   },
   {
-    key: 'Pantalón de jean rojo',
+    key: 'Jean rojo',
     image: require('./jean_rojo.jpg'),
     price: '400.00',
     category: 'Jeans',
     color: 'Rojo',
+  },
+  {
+    key: 'Cinturón negro',
+    image: require('./cinturon.jpg'),
+    price: '300.00',
+    category: '',
+    color: 'Negro',
   },
   {
     key: 'Zapatillas',

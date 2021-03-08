@@ -1,28 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {selectedRecommendedItem} from '../catalog/items/catalog_items';
 import Button from 'react-native-bootstrap-buttons';
 
 const RecommenderConfirm = ({navigation}) => {
   const [loading, setLoading] = useState(true);
 
-  const time_to_load = 12000;
-
-  useEffect(() => {
-    if (!loading) {
-      return;
-    }
-    setTimeout(() => {
-      setLoading(false);
-    }, time_to_load);
-  });
-
   const loadingComponent = () => {
     return (
-      <View style={styles.loading}>
-        <ActivityIndicator size={70} color="#1c7dd6" />
-        <Text style={styles.loadingText}>{text.loading}</Text>
-      </View>
+      <TouchableWithoutFeedback onPress={() => setLoading(false)}>
+        <View style={styles.loading}>
+          <ActivityIndicator size={70} color="#1c7dd6" />
+          <Text style={styles.loadingText}>{text.loading}</Text>
+        </View>
+      </TouchableWithoutFeedback>
     );
   };
   const confirmComponent = () => {
