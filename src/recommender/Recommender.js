@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import Icon from 'react-native-ionicons';
 
@@ -11,6 +11,7 @@ const Recommender = ({navigation}) => {
   return (
     <>
       <View style={styles.container}>
+        <Text style={styles.text}>{text.title}</Text>
         <RNCamera
           ref={(ref) => {
             camera = ref;
@@ -43,10 +44,26 @@ const Recommender = ({navigation}) => {
   );
 };
 
+const text = {
+  title: 'Tomá una foto de tu prenda!',
+};
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#e9fafb',
     height: '100%',
+  },
+  text: {
+    position: 'absolute',
+    top: 0,
+    paddingVertical: 20,
+    zIndex: 999,
+    textAlign: 'center',
+    width: '100%',
+    fontSize: 27,
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: 'rgba(10,10,10,0.6)',
   },
   camera: {
     flex: 1,
